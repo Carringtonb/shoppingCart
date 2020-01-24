@@ -8,6 +8,7 @@ var cart;
 
 function loadCart() {
   var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  console.log(cartItems);
   cart = new Cart(cartItems);
 }
 
@@ -20,11 +21,35 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {}
+// if(document.getElementsByTagName('ul')[1]){
+//   var previewText = document.getElementsByTagName('ul')[1];
+//   previewText.remove();
+//   } 
 
+// var previewSections = document.getElementById('cartContents');
+// var previewList = document.createElement('ul');
+// previewList.textContent = 'Your cart:'
+// previewSections.appendChild(previewList);
+// for(var i = 0; i < cart.items.length; i++){
+//   var newLI = document.createElement('li');
+//   newLI.textContent = `${cart.items[i].product}: ${cart.items[i].quantity}`;
+//   previewList.appendChild(newLI);
+// }
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
 
   // TODO: Find the table body
+var tableBody = document.getElementsByTagName('tbody')[0];
+for (var i = 0; i < cart.items.length; i++){
+  var tableRow = document.createElement('tr');
+  var tableProduct = document.createElement('td');
+  var tableQuantity = document.createElement('td');
+  tableProduct.textContent = cart.items[i].product;
+  tableQuantity.textContent = cart.items[i].quantity;
+  tableRow.appendChild(tableProduct);
+  tableRow.appendChild(tableQuantity);
+  tableBody.appendChild(tableRow);
+}
 
   // TODO: Iterate over the items in the cart
   // TODO: Create a TR

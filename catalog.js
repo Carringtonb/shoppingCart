@@ -50,8 +50,7 @@ function addSelectedItemToCart(submitedItem, submittedQuantity) {
 function updateCounter() {
  var counter = cart.items.length;
   console.log(counter);
-//   for(var i = 0; i < cart.items.length; i++){
-//     counter += Number(cart.items[i].quantity);
+  
 if(document.getElementsByTagName('article')[0]){
   var counterText = document.getElementsByTagName('article')[0];
   counterText.remove();
@@ -66,9 +65,22 @@ previewSections.appendChild(counterText);
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
+  if(document.getElementsByTagName('ul')[1]){
+    var previewText = document.getElementsByTagName('ul')[1];
+    previewText.remove();
+    } 
+
+  var previewSections = document.getElementById('cartContents');
+  var previewList = document.createElement('ul');
+  previewList.textContent = 'Your cart:'
+  previewSections.appendChild(previewList);
+  for(var i = 0; i < cart.items.length; i++){
+    var newLI = document.createElement('li');
+    newLI.textContent = `${cart.items[i].product}: ${cart.items[i].quantity}`;
+    previewList.appendChild(newLI);
+  }
   // TODO: Add a new element to the cartContents div with that information
 }
-
 // Set up the "submit" event listener on the form.
 // This is the trigger for the app. When a user "submits" the form, it will
 // Call that handleSubmit method above and kick off the whole process

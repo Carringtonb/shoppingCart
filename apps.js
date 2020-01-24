@@ -9,15 +9,10 @@ var Cart = function(items) {
 Cart.prototype.addItem = function(product, quantity) {
   var newItem = new CartItem(product, quantity);
   var booleanExists = false;
-  console.log(cart.items.length);
-  // console.log(cart.items[0][0]);
-  // console.log(cart.items[0].CartItem[0]);
-  // console.log(cart.items[0].product);
   for(var i = 0; i < cart.items.length; i++){
     if (newItem.product === cart.items[i].product){
-        cart.items[i].quantity += quantity;
+        cart.items[i].quantity = Number(cart.items[i].quantity) + Number(quantity);
         booleanExists = true;
-        console.log("/././././")
     }
   } 
   if (booleanExists === false) {
