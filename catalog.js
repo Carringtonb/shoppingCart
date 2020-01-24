@@ -31,7 +31,7 @@ function handleSubmit(event) {
    if (submitedItem)
   // Do all the things ...
   addSelectedItemToCart(submitedItem, submittedQuantity);
-  cart.saveToLocalStorage();
+  cart.saveToLocalStorage();//CARRINGTON/ANTHONY SWITCH DRIVERS
   updateCounter();
   updateCartPreview();
 // console.log(event.target.id);
@@ -40,15 +40,28 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart(submitedItem, submittedQuantity) {
     cart.addItem(submitedItem, submittedQuantity);
-    console.log(cart);
-    
+  // console.log(cart.items[0].quantity);
   // TODO: suss out the item picked from the select list
   // TODO: get the quantity
   // TODO: using those, add one item to the Cart
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+ var counter = cart.items.length;
+  console.log(counter);
+//   for(var i = 0; i < cart.items.length; i++){
+//     counter += Number(cart.items[i].quantity);
+if(document.getElementsByTagName('article')[0]){
+  var counterText = document.getElementsByTagName('article')[0];
+  counterText.remove();
+  } 
+var previewSections = document.getElementsByClassName('card')[0];
+var counterText = document.createElement('article');
+counterText.textContent = "You have " + counter + " items in your cart.";
+previewSections.appendChild(counterText);
+}
+
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
