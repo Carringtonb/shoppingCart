@@ -7,12 +7,30 @@ var Cart = function(items) {
 };
 
 Cart.prototype.addItem = function(product, quantity) {
-    cart.items.push([product, quantity]);
+  var newItem = new CartItem(product, quantity);
+  var booleanExists = false;
+  console.log(cart.items.length);
+  // console.log(cart.items[0][0]);
+  // console.log(cart.items[0].CartItem[0]);
+  // console.log(cart.items[0].product);
+  for(var i = 0; i < cart.items.length; i++){
+    if (newItem.product === cart.items[i].product){
+        cart.items[i].quantity += quantity;
+        booleanExists = true;
+        console.log("/././././")
+    }
+  } 
+  if (booleanExists === false) {
+      cart.items.push(newItem);
+  }
+
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  var localCartData = JSON.stringify(cart);
+  localStorage.setItem('cart', localCartData);
 };
 
 Cart.prototype.removeItem = function(item) {
